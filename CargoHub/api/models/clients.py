@@ -12,17 +12,20 @@ class Clients(Base):
 
     def get_clients(self):
         return self.data
+    # get endpoint
 
     def get_client(self, client_id):
         for x in self.data:
             if x["id"] == client_id:
                 return x
         return None
+    # get endpoint 
 
     def add_client(self, client):
         client["created_at"] = self.get_timestamp()
         client["updated_at"] = self.get_timestamp()
         self.data.append(client)
+    # Post endpoint
 
     def update_client(self, client_id, client):
         client["updated_at"] = self.get_timestamp()
@@ -30,11 +33,13 @@ class Clients(Base):
             if self.data[i]["id"] == client_id:
                 self.data[i] = client
                 break
+    # Put endpoint
 
     def remove_client(self, client_id):
         for x in self.data:
             if x["id"] == client_id:
                 self.data.remove(x)
+    # Delete EndPoint
 
     def load(self, is_debug):
         if is_debug:
@@ -43,6 +48,7 @@ class Clients(Base):
             f = open(self.data_path, "r")
             self.data = json.load(f)
             f.close()
+    
 
     def save(self):
         f = open(self.data_path, "w")
