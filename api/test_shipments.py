@@ -12,7 +12,7 @@ def base_url():
 
 # Test fetching a shipment by ID
 def test_get_shipment_by_id(base_url):
-    url = base_url + 'shipments/9' 
+    url = base_url + 'shipments/1' 
 
     response = requests.get(url, headers={'API_KEY': API_KEY})
 
@@ -21,9 +21,10 @@ def test_get_shipment_by_id(base_url):
 
 # Test updating a shipment
 def test_update_shipment_status(base_url):
-    url = base_url + 'shipments/8'
+    url = base_url + 'shipments/1'
     payload = {
-        "shipment_status": "Shipped",
+        "id": 1,
+        "shipment_status": "Shipped"
     }
 
     response = requests.put(url, headers={'API_KEY': API_KEY}, json=payload)
@@ -35,8 +36,9 @@ def test_update_shipment_status(base_url):
 
 # Test updating shipment details
 def test_update_shipment_details(base_url):
-    url = base_url + 'shipments/123'
+    url = base_url + 'shipments/1'
     payload = {
+        "id": 1,
         "origin": "Utrecht",
         "weight": 450
     }
